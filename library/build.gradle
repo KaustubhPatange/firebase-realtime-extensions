@@ -20,6 +20,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -32,7 +33,7 @@ android {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+    compileOnly 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
     compileOnly 'com.google.firebase:firebase-database-ktx:19.6.0'
 }
 
@@ -41,7 +42,7 @@ ext {
     PUBLISH_ARTIFACT_ID = 'realtime-extensions'
     PUBLISH_VERSION = versions.library
     PUBLISH_ARTIFACT_DESCRIPTION = 'Some extensions for Firebase Realtime Database'
-    PUBLISH_ARTIFACT_URL = ''
+    PUBLISH_ARTIFACT_URL = 'https://github.com/KaustubhPatange/firebase-realtime-extensions'
 }
 
 apply from: "${rootProject.projectDir}/gradle/publish.gradle"

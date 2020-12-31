@@ -1,6 +1,58 @@
-# Firebase Realtime database Extensions
+# Realtime Database Extensions
+
+![build](https://github.com/KaustubhPatange/firebase-realtime-extensions/workflows/build/badge.svg)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.kaustubhpatange/realtime-extensions)
 
 A set of Kotlin extensions for Firebase Realtime database to seamlessly suspend the callbacks listeners.
+
+So I wrote these extensions couple of months back & found to be copy pasting them in most of the projects, hence decided to combine them in this library.
+
+## Download
+
+Library is available on `MavenCentral()`.
+
+```gradle
+implementation "io.github.kaustubhpatange:realtime-extensions:<version>"
+```
+
+## Usage
+
+Library provides some suspending extension functions which can be used through [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html).
+
+A basic setup is shown below. You can find the whole list of extensions [here](https://github.com/KaustubhPatange/firebase-realtime-extensions/blob/master/library/src/main/java/com/kpstv/firebase/extensions/DataReferenceExt.kt).
+
+```kotlin
+val ref: DataReference = ...
+
+val job = SupervisorJob() // This will help to cancel its child jobs
+CoroutineScope(... + job).launch {
+   ... // all the suspending calls.
+}
+
+// To cancel the job use
+job.cancel()
+```
+
+- Listen for **ValueEventListener** or **ChildEventListener** on a `DatabaseReference`.
+
+```kotlin
+// Or childEventFlow()
+ref.valueEventFlow().collect { result ->
+   when(result) {
+      ...
+   }
+}
+```
+
+- Use the following suspendable methods which returns [`DataResponse<T>`](https://github.com/KaustubhPatange/firebase-realtime-extensions/blob/master/library/src/main/java/com/kpstv/firebase/Response.kt) object.
+
+```kotlin
+suspend DatabaseReference.setValueAsync(value): DataResponse<DatabaseReference>
+suspend DatabaseReference.updateChildrenAsync(value): DataResponse<DatabaseReference>
+suspend DatabaseReference.removeValueAsync(): DataResponse<DatabaseReference>
+
+suspend DatabaseReference.singleValueEvent(): DataResponse<DataSnapshot>
+```
 
 ## License
 
