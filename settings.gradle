@@ -1,2 +1,2 @@
-include ':library'
+include ':realtime-ktx'
 rootProject.name = "FirebaseExtensions"

@@ -5,7 +5,7 @@
 
 A set of Kotlin extensions for Firebase Realtime database to seamlessly suspend the callbacks listeners.
 
-So I wrote these extensions couple of months back & found to be copy pasting them in most of the projects, hence decided to combine them in this library.
+I wrote these extensions couple of months back & found to be copy pasting them in most of the projects, hence decided to combine them in a library.
 
 ## Download
 
@@ -21,15 +21,17 @@ Library provides some suspending extension functions which can be used through [
 
 A basic setup is shown below. You can find the whole list of extensions [here](https://github.com/KaustubhPatange/firebase-realtime-extensions/blob/master/library/src/main/java/com/kpstv/firebase/extensions/DataReferenceExt.kt).
 
+- Since all the calls are suspending, we will chain [`CoroutineContext`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/) with a [`SupervisorJob`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html) to create our custom [`CoroutineScope`](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/). This will help us to cancel the job (Firebase events) if needed.
+
 ```kotlin
 val ref: DataReference = ...
 
-val job = SupervisorJob() // This will help to cancel its child jobs
+val job = SupervisorJob()
 CoroutineScope(... + job).launch {
    ... // all the suspending calls.
 }
 
-// To cancel the job use
+// To cancel the job/event use
 job.cancel()
 ```
 
