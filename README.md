@@ -3,7 +3,7 @@
 ![build](https://github.com/KaustubhPatange/firebase-realtime-extensions/workflows/build/badge.svg)
 ![Maven Central](https://img.shields.io/maven-central/v/io.github.kaustubhpatange/realtime-extensions)
 
-A set of Kotlin extensions for Firebase Realtime database to seamlessly suspend the callbacks listeners.
+A set of Kotlin extensions for Firebase Realtime database to seamlessly suspend the callback listeners.
 
 I wrote these extensions couple of months back & found to be copy pasting them in most of the projects, hence decided to combine them in a library.
 
