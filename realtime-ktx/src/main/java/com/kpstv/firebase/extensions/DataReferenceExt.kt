@@ -69,7 +69,7 @@ suspend fun DatabaseReference.setPriorityAsync(value: Any?, onCancellation: Canc
  * @param onCancellation action to perform if there is a cancellation
  */
 suspend fun DatabaseReference.removeValueAsync(onCancellation: CancellationCallback = {}): DataResponse<DatabaseReference> {
-    return setValueAsync(null)
+    return setValueAsync(null, onCancellation = onCancellation)
 }
 
 /**
