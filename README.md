@@ -56,6 +56,11 @@ suspend DatabaseReference.removeValueAsync(): DataResponse<DatabaseReference>
 suspend DatabaseReference.singleValueEvent(): DataResponse<DataSnapshot>
 ```
 
+## Resources
+
+- **Medium Articles**
+  - [Suspending Firebase Realtime Database with Kotlin Coroutines](https://developerkp16.medium.com/suspending-firebase-realtime-database-with-kotlin-coroutines-76b4651bc0e8).
+
 ## License
 
 - [The Apache License Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
